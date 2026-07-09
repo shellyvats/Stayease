@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply text-secondary-900 antialiased bg-surface-50;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+}
+
+/* Subtle global backdrop */
+.app-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #F8FAFC;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(37,99,235,0.07), transparent 38%),
+    radial-gradient(circle at 88% 4%, rgba(245,158,11,0.06), transparent 42%),
+    radial-gradient(circle at 50% 100%, rgba(15,23,42,0.05), transparent 55%),
+    linear-gradient(180deg, #F8FAFC 0%, #f1f5f9 100%);
+}
+
+.app-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, black 40%, transparent 90%);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(37,99,235,0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Reusable primitives */
+.card {
+  @apply bg-white border border-secondary-200/70 rounded-2xl shadow-card;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all duration-200 hover:bg-primary-700 hover:shadow-lift active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-secondary-200 bg-white px-5 py-2.5 text-sm font-semibold text-secondary-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 active:scale-[0.98];
+}
+
+.btn-accent {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-5 py-2.5 text-sm font-semibold text-secondary-900 shadow-soft transition-all duration-200 hover:bg-accent-400 active:scale-[0.98];
+}
+
+.input-field {
+  @apply w-full rounded-xl border border-secondary-200 bg-white px-4 py-2.5 text-sm text-secondary-900 placeholder:text-secondary-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-100 transition;
+}
+
+.label {
+  @apply mb-1.5 block text-sm font-medium text-secondary-700;
+}
+
+.badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+}
+
+/* Skeleton loader shimmer */
+.skeleton {
+  @apply relative overflow-hidden bg-secondary-100 rounded-xl;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.6) 20%,
+    rgba(255, 255, 255, 0.9) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer-sweep 1.6s infinite;
+}
+@keyframes shimmer-sweep {
+  100% { transform: translateX(100%); }
+}
+
+.section-heading-eyebrow {
+  @apply inline-block rounded-full bg-primary-50 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-primary-700;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
+}
